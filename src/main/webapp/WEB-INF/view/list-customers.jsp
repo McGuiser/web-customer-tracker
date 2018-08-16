@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 
@@ -32,11 +34,15 @@
 	
 		<div id="content">
 		
-			<!-- Put new button: Add Customer -->
-			<input type="button" value="Add Customer"
-					onclick="window.location.href='showFormForAdd'; return false;" 
-					class="add-button"
-			/>
+			<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+			
+				<!-- Put new button: Add Customer -->
+				<input type="button" value="Add Customer"
+						onclick="window.location.href='showFormForAdd'; return false;" 
+						class="add-button"
+				/>
+				
+			</security:authorize>
 		
 			<!-- Add our html table here -->
 			<table>
@@ -66,17 +72,36 @@
 						<td> ${tempCustomer.lastName} </td>
 						<td> ${tempCustomer.email} </td>
 						<td>
-							<!-- Display the update link -->
-							<a href="${updateLink}">Update</a>
-							|
-							<a href="${deleteLink}"
-								onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
+							<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+								<!-- Display the update link -->
+								<a href="${updateLink}">Update</a>
+							</security:authorize>
+							<security:authorize access="hasAnyRole('ADMIN')">
+								|
+								<a href="${deleteLink}"
+									onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">
+									Delete
+								</a>
+							</security:authorize>
 						</td>
 					</tr>
 				
 				</c:forEach>
 			
 			</table>
+			
+			<br>
+			
+		
+			<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+	
+				<input type="submit" value="Logout" class="add-button" />
+	
+			</form:form>
+			
+			User: <security:authentication property="principal.username" />
+		
+			Role(s): <security:authentication property="principal.authorities" />
 		
 		</div>
 	
