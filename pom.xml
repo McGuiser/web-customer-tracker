@@ -43,7 +43,21 @@
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
 		    <version>${springsecurity.version}</version>
-		</dependency>	
+		</dependency>
+		
+		<!-- Spring Transactions -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        
+        <!-- Spring ORM -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
 		
 		<!-- Add Spring Security Taglibs support -->
 		<dependency>
@@ -77,20 +91,13 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
-        <!-- Spring Transactions -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        
-        <!-- Spring ORM -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
+		
+		<!-- Add Jackson for JSON converters> -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.5</version>
+		</dependency>
 
  		<!-- Hibernate Core -->
 		<dependency>
