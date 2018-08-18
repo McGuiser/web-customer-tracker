@@ -47,9 +47,11 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied")
-			.and()
-			.csrf().ignoringAntMatchers("/api/**"); // Delete later, for testing purposes only.
+			.exceptionHandling().accessDeniedPage("/access-denied");
+		
+			// The following is for testing purposes only! Bad practice!
+			//.and()
+			//.csrf().ignoringAntMatchers("/api/**"); 
 		
 	}
 	
